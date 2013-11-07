@@ -1,0 +1,28 @@
+<?php $_cartQty = $this->getSummaryCount() ?>
+  
+<div class="tbar-cart ">
+	 <div class="tbar-cart-bd">
+    	   	<div class="cart-data">
+           	    <span class="qty">
+                <?php if ($_cartQty!=""): ?>
+                <?php if ($_cartQty==1): ?>
+                <?php echo $this->__('<a href="%s">1 </a>', $this->getUrl('checkout/cart')) ?>
+                 Item(s)
+                <?php else: ?>
+                <?php echo $this->__('<a href="%s">%s </a>', $this->getUrl('checkout/cart'), $_cartQty) ?>
+                 Item(s)
+                <?php endif ?>
+                <?php else :?>
+                 <?php echo $this->__('0');?>
+                 Item(s)
+                <?php endif;?>
+                </span>
+                <span class="total"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                <?php endif; ?></span>
+                <a href="<? echo $this->getUrl('checkout/cart')?>" class="cart-img">&nbsp;</a>
+        </div>
+    </div>
+      
+</div> 

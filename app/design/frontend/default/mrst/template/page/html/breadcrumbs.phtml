@@ -1,0 +1,25 @@
+<?php
+/**
+ * Breadcrumb Template 
+ */
+?>
+<?php if($crumbs && is_array($crumbs)): ?>
+<div class="breadcrumbs">
+    <ul class="gridContainer">
+        <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
+            <li class="<?php echo $_crumbName ?>" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <?php if($_crumbInfo['link']): ?>
+                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>" itemprop="url" rel="nofollow"><span itemprop="title"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span></a>
+            <?php elseif($_crumbInfo['last']): ?>
+                <span itemprop="title" class="last"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span>
+            <?php else: ?>
+                <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+            <?php endif; ?>
+            <?php  /* if(!$_crumbInfo['last']): ?>
+            		/
+            <?php endif; */ ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

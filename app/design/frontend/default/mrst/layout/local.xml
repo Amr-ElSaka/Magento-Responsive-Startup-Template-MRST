@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * local.xml
+ *
+ * Local layout modifications for our local theme
+ *
+ * @category    design
+ * @package     my_theme_default
+ * @copyright   Copyright (c) PixelJaws 2013.
+ */
+-->
+<layout version="0.1.0">
+  <default>
+
+
+
+<!-- Global Head -->
+	<reference name="head">
+		<action method="addCss"><stylesheet>css/layout.css</stylesheet></action>
+		<action method="removeItem"><type>skin_css</type><name>css/styles-ie.css</name></action>
+        <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
+        <action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
+        <action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name></action>
+        <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
+	</reference>
+
+<!-- Global Header -->	
+	<reference name="header">
+		<block type="checkout/cart_sidebar" name="cart_header" template="checkout/cart/header-cart.phtml">
+			<action method="addItemRender"><type>simple</type>
+			<block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+			<action method="addItemRender"><type>grouped</type>
+			<block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+			<action method="addItemRender"><type>configurable</type>
+			<block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+			<block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+				<label>Shopping Cart Sidebar Extra Actions</label>
+			</block>
+		</block>
+
+		<block type="directory/currency" name="header-currency" template="directory/currency-header.phtml"/>
+			<block type="core/text_list" name="top.menu" as="topMenu" translate="label">
+			<label>Navigation Bar</label>
+			<block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>
+		</block>
+		
+	
+	</reference>
+	
+	<!-- Global Footer -->
+	<reference name="footer">
+		
+	<!-- add Custome JS to footer -->	
+		<block type="page/html_head" name="footerjs" as="footerjs" template="page/html/footerjs.phtml">
+			<action method="addItem"><type>skin_js</type><name>js/plugins.js</name></action>
+			<!--<action method="addItem"><type>skin_js</type><name>js/jquery.caroufeddel-6.2.1.js</name></action>-->
+			<!-- moved to scripts.js <action method="addItem"><type>skin_js</type><name>js/easyResponsiveTabs.js</name></action>-->
+			<action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
+		</block>
+	</reference>	
+
+
+	<!-- Remove callouts and rarely used stuff -->
+	
+<!--	<remove name="cart_sidebar"/>
+	<remove name="checkout_cart_link" />
+	
+	<remove name="right.poll"/>
+	<remove name="right.permanent.callout"/>
+	<remove name="left.permanent.callout"/>
+	<remove name="paypal.partner.right.logo"/>-->
+	
+	<!--<remove name="catalog.compare.sidebar" />
+	<remove name="right.reports.product.viewed" />
+	-->
+   <!-- <remove name="right.permanent.callout" />
+    <remove name="left.permanent.callout" />
+    <remove name="left.newsletter" />
+    
+    <remove name="paypal.partner.right.logo" />
+    <remove name="right.poll" />
+    <remove name="cart_sidebar" />
+    <remove name="catalog.compare.list" />-->
+
+	
+
+
+
+
+
+</default>
+<!-- cms pages Remove STD Tag-->
+	<cms_page>
+         <reference name="content">
+             <action method="unsetChild">
+                <alias>cms.wrapper</alias>
+             </action>
+             <action method="insert">
+                <alias>cms_page</alias>
+             </action>
+         </reference>
+    </cms_page>
+		
+<!-- CMS Home Page -->
+<cms_index_index>
+	<reference name="root">
+		<action method="setTemplate"><template>page/1column.phtml</template></action>
+	</reference>
+    <reference name="content">
+    	<!-- call slider -->
+		<block type="page/html" as="slider" name="slider" before="-" template="page/slider.phtml"/>
+    </reference>
+	
+	<reference name="footerjs">
+	
+	</reference>
+	
+</cms_index_index>
+
+
+<!-- catalog category default -->
+	<catalog_category_default translate="label">
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="left">
+			<remove name="currency"/>
+			<action method="unsetChild"><alias>catalog.leftnav</alias></action>
+			<action method="insert"><blockName>catalog.leftnav</blockName><after>0</after></action>
+		</reference>
+	</catalog_category_default>
+
+<!-- catalog category layered -->
+	<catalog_category_layered translate="label">
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="left">
+			<remove name="currency"/>
+			<action method="unsetChild"><alias>catalog.leftnav</alias></action>
+			<action method="insert"><blockName>catalog.leftnav</blockName><after>0</after></action>
+		</reference>
+	</catalog_category_layered>
+
+<!-- catalog search result index -->
+	<catalogsearch_result_index translate="label">
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="left">
+            <remove name="currency"/>
+			<action method="unsetChild"><alias>catalog.leftnav</alias></action>
+			<action method="insert"><blockName>catalog.leftnav</blockName><after>0</after></action>
+		</reference>
+	</catalogsearch_result_index>
+
+<!-- catalog search advanced index -->
+	<catalogsearch_advanced_index translate="label">
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+	</catalogsearch_advanced_index>
+
+<!-- catalog search advanced result -->
+	<catalogsearch_advanced_result translate="label">
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		<reference name="left">
+            <remove name="currency"/>
+			<action method="unsetChild"><alias>catalog.leftnav</alias></action>
+			<action method="insert"><blockName>catalog.leftnav</blockName><after>0</after></action>>
+		</reference>
+	</catalogsearch_advanced_result>
+
+
+<!-- product -->
+	<catalog_product_view translate="label">
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+		</reference>
+		<reference name="footerjs">
+			<!--<action method="addItem"><type>skin_js</type><name>js/zoom.js</name></action>-->
+		</reference>
+		
+		<reference name="product.info">
+			<block type="page/html_pager" name="product_review_list.toolbar"/>
+            <block type="core/template" name="product_review_list.count" template="review/product/view/count.phtml" />
+            <block type="review/product_view_list" name="product.detail.info.product_additional_data" as="product_reviews" template="review/product/view/list.phtml">
+            <block type="review/form" name="product.review.form" as="review_form">
+            </block>
+            </block>
+		</reference>
+		
+		
+
+	</catalog_product_view>
+
+<!-- check out page -->
+	<checkout_onepage_index translate="label">
+		 <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="content">
+		 <block type="page/html_wrapper" name="checkout.progress.wrapper" translate="label">
+                <label>Checkout Progress Wrapper</label>
+                <action method="setElementId"><value>checkout-progress-wrapper</value></action>
+                <block type="checkout/onepage_progress" name="checkout.progress" before="-" template="checkout/onepage/progress.phtml"/>
+            </block>
+		</reference>
+	</checkout_onepage_index> 
+ 
+ 
+ 
+ 
+</layout>
