@@ -82,15 +82,11 @@
 </default>
 <!-- cms pages Remove STD Tag-->
 	<cms_page>
-         <reference name="content">
-             <action method="unsetChild">
-                <alias>cms.wrapper</alias>
-             </action>
-             <action method="insert">
-                <alias>cms_page</alias>
-             </action>
-         </reference>
-    	</cms_page>
+		<reference name="content">
+			<action method="unsetChild"><alias>cms.wrapper</alias></action>
+			<action method="insert"><alias>cms_page</alias></action>
+		</reference>
+	</cms_page>
 		
 <!-- CMS Home Page -->
 	<cms_index_index>
