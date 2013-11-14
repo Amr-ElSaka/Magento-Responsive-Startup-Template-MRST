@@ -8,7 +8,7 @@
  * @category    design
  * @package     my_theme_default
  * @copyright   Copyright (c)  2013.
- */
+**/
 -->
 <layout version="0.1.0">
   <default>
@@ -17,16 +17,19 @@
 
 <!-- Global Head -->
 	<reference name="head">
+	<!-- responsive css -->
 		<action method="addCss"><stylesheet>css/layout.css</stylesheet></action>
+	<!-- remove unwanted css and js -->
 		<action method="removeItem"><type>skin_css</type><name>css/styles-ie.css</name></action>
-        <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
-        <action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
-        <action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name></action>
-        <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
+	        <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
+	        <action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
+	        <action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name></action>
+	        <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
 	</reference>
 
 <!-- Global Header -->	
 	<reference name="header">
+	<!-- add cart to header -->
 		<block type="checkout/cart_sidebar" name="cart_header" template="checkout/cart/header-cart.phtml">
 			<action method="addItemRender"><type>simple</type>
 			<block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
@@ -38,19 +41,16 @@
 				<label>Shopping Cart Sidebar Extra Actions</label>
 			</block>
 		</block>
-
+	<!-- add currency to header -->
 		<block type="directory/currency" name="header-currency" template="directory/currency-header.phtml"/>
 			<block type="core/text_list" name="top.menu" as="topMenu" translate="label">
 			<label>Navigation Bar</label>
 			<block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>
 		</block>
-		
-	
 	</reference>
 	
 	<!-- Global Footer -->
 	<reference name="footer">
-		
 	<!-- add Custome JS to footer -->	
 		<block type="page/html_head" name="footerjs" as="footerjs" template="page/html/footerjs.phtml">
 			<action method="addItem"><type>skin_js</type><name>js/plugins.js</name></action>
@@ -59,7 +59,6 @@
 			<action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
 		</block>
 	</reference>	
-
 
 	<!-- Remove callouts and rarely used stuff -->
 	
@@ -91,24 +90,24 @@
                 <alias>cms_page</alias>
              </action>
          </reference>
-    </cms_page>
+    	</cms_page>
 		
 <!-- CMS Home Page -->
-<cms_index_index>
-	<reference name="root">
-		<action method="setTemplate"><template>page/1column.phtml</template></action>
-	</reference>
-    <reference name="content">
-    	<!-- call slider -->
-	<block type="page/html" as="slider" name="slider" before="-" template="page/slider.phtml"/>
-    </reference>
+	<cms_index_index>
+		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>
+		</reference>
+	    	<reference name="content">
+	    	<!-- call slider -->
+			<block type="page/html" as="slider" name="slider" before="-" template="page/slider.phtml"/>
+	    	</reference>
 	
-	<reference name="footerjs">
-	<!-- add js need to be loaded in home page -->
+		<reference name="footerjs">
+		<!-- add js need to be loaded in home page -->
+		
+		</reference>
 	
-	</reference>
-	
-</cms_index_index>
+	</cms_index_index>
 
 
 <!-- catalog category default -->
@@ -141,7 +140,7 @@
 			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
 		</reference>
 		<reference name="left">
-            <remove name="currency"/>
+            		<remove name="currency"/>
 			<action method="unsetChild"><alias>catalog.leftnav</alias></action>
 			<action method="insert"><blockName>catalog.leftnav</blockName><after>0</after></action>
 		</reference>
@@ -160,7 +159,7 @@
 			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
 		</reference>
 		<reference name="left">
-            <remove name="currency"/>
+            		<remove name="currency"/>
 			<action method="unsetChild"><alias>catalog.leftnav</alias></action>
 			<action method="insert"><blockName>catalog.leftnav</blockName><after>0</after></action>>
 		</reference>
@@ -191,19 +190,15 @@
 
 <!-- check out page -->
 	<checkout_onepage_index translate="label">
-		 <reference name="root">
-            <action method="setTemplate"><template>page/1column.phtml</template></action>
-        </reference>
+		<reference name="root">
+            		<action method="setTemplate"><template>page/1column.phtml</template></action>
+		</reference>
 		<reference name="content">
-		 <block type="page/html_wrapper" name="checkout.progress.wrapper" translate="label">
-                <label>Checkout Progress Wrapper</label>
-                <action method="setElementId"><value>checkout-progress-wrapper</value></action>
-                <block type="checkout/onepage_progress" name="checkout.progress" before="-" template="checkout/onepage/progress.phtml"/>
-            </block>
+			<block type="page/html_wrapper" name="checkout.progress.wrapper" translate="label">
+                	<label>Checkout Progress Wrapper</label>
+                	<action method="setElementId"><value>checkout-progress-wrapper</value></action>
+                	<block type="checkout/onepage_progress" name="checkout.progress" before="-" template="checkout/onepage/progress.phtml"/>
+            		</block>
 		</reference>
 	</checkout_onepage_index> 
- 
- 
- 
- 
 </layout>
