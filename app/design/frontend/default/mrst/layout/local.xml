@@ -93,14 +93,12 @@
 		<reference name="root">
 			<action method="setTemplate"><template>page/1column.phtml</template></action>
 		</reference>
-	    	<reference name="content">
+		<reference name="content">
 	    	<!-- call slider -->
 			<block type="page/html" as="slider" name="slider" before="-" template="page/slider.phtml"/>
-	    	</reference>
-	
+		</reference>
 		<reference name="footerjs">
 		<!-- add js need to be loaded in home page -->
-		
 		</reference>
 	
 	</cms_index_index>
